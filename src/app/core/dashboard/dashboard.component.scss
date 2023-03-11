@@ -1,0 +1,25 @@
+mat-toolbar {
+  height: 70px;
+}
+
+
+.logout-icon {
+  font-size: 25px;
+
+  &:hover {
+    cursor: pointer;
+    color: red;
+  }
+}
+//
+//.user-login {
+//  font-size: 15px;
+//  padding: 30px;
+//}
+
+.logo {
+  background: white;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 25px;
+}

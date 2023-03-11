@@ -1,0 +1,94 @@
+<form [formGroup]="form">
+  <div class="row">
+    <div class="col-sm-8">
+      <mat-form-field>
+        <mat-label>Code</mat-label>
+        <input matInput placeholder="Code" formControlName="code" #codeInput>
+        <!--        <mat-error *ngIf="f?.['code']?.errors?.['required']">Code is required!</mat-error>-->
+        <mat-error *ngIf="form?.get('code')?.errors?.['required']">Code is required!</mat-error>
+        <mat-error *ngIf="form?.get('code')?.errors?.['minlength']">Min length is 4</mat-error>
+        <mat-error *ngIf="form?.get('code')?.errors?.['maxlength']">Max length is 7</mat-error>
+        <mat-error *ngIf="form?.get('code')?.errors?.['incorrectCode']">Code has to start with SK prefix</mat-error>
+        <!--        <mat-hint align="end" [ngClass]="{'err':  codeInput.value.length > 7}">{{ codeInput.value.length }} / 7</mat-hint>-->
+        <mat-hint align="end">{{ form.get('code')?.value.length}} / 7</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <mat-form-field>
+        <mat-label>Origin</mat-label>
+        <input matInput placeholder="Origin" formControlName="origin">
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field>
+        <mat-label>Destination</mat-label>
+        <input matInput placeholder="Destination" formControlName="destination">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <mat-form-field>
+        <mat-label>Departure time</mat-label>
+        <input matInput placeholder="Departure time" formControlName="departureTime">
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field>
+        <mat-label>Return time</mat-label>
+        <input matInput placeholder="Return time" formControlName="returnTime">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-form-field>
+        <textarea matInput placeholder="Additional information" formControlName="additionalInfo"></textarea>
+        <mat-error *ngIf="form?.get('additionalInfo')?.errors?.['incorrectCode']">my own error</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-checkbox formControlName="discount">With SK Discount</mat-checkbox>
+    </div>
+  </div>
+
+  <!-- Dynamicznie dodawane pola formularza dot. załogi-->
+  <div class="crew-container shadow" *ngFor="let crew of crew.controls; index as index" formArrayName="crew">
+    <div class="row crew-header">
+      <div class="col">
+        <span>Crew Member - {{ index + 1 }}</span>
+        <mat-icon class="float-end" (click)="removeCrewMember(index)">delete_forever</mat-icon>
+      </div>
+    </div>
+    <div class="row" [formGroupName]="index">
+      <div class="col-sm-5">
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name" formControlName="name">
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field>
+          <mat-label>Job</mat-label>
+          <mat-select placeholder="Job" formControlName="job">
+            <mat-option *ngFor="let job of jobs" [value]="job.value">
+              {{ job.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button mat-raised-button color="primary" (click)="addCrewMember()">Add crew member</button>
+    </div>
+  </div>
+</form>
+<pre> {{ form.value | json }} </pre>
+
+

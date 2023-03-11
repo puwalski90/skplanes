@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+body {
+  background: #e9ebee;
+}
+
+
+
+
+// SNACKBAR (TOAST)
+.mat-mdc-snack-bar-container.toast-success {
+  --mdc-snackbar-container-color: green;
+}
+
+.mat-mdc-snack-bar-container.toast-failure {
+  --mdc-snackbar-container-color: red;
+}
+

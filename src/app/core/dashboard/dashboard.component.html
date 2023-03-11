@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <img src="./assets/images/logo_sk.png" class="logo" routerLink="/dashboard">
+      </div>
+      <div class="col-4 ">
+        <button mat-raised-button color="warn" class="mx-2" routerLink="/dashboard">Flights</button>
+        <button mat-raised-button color="accent" routerLink="/dashboard/admin">Admin</button>
+      </div>
+      <div class="col-4 d-flex flex-row justify-content-end ">
+        <p class="user-login pe-3">Hello, {{ user }}</p>
+        <mat-icon class="logout-icon pt-1 h-100 mx-2" (click)="logout()">power_settings_new</mat-icon>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
+
+
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
